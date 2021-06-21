@@ -1,3 +1,49 @@
+.is-marginless {
+  margin: 0 !important;
+}
+
+.is-paddingless {
+  padding: 0 !important;
+}
+
+$spacing-shortcuts: ("margin": "m", "padding": "p") !default;
+$spacing-directions: ("top": "t", "right": "r", "bottom": "b", "left": "l") !default;
+$spacing-horizontal: "x" !default;
+$spacing-vertical: "y" !default;
+$spacing-values: ("0": 0, "1": 0.25rem, "2": 0.5rem, "3": 0.75rem, "4": 1rem, "5": 1.5rem, "6": 3rem, "auto": auto) !default;
+
+@each $property, $shortcut in $spacing-shortcuts {
+  @each $name, $value in $spacing-values {
+    // All directions
+    .#{$shortcut}-#{$name} {
+      #{$property}: $value !important;
+    }
+
+    // Cardinal directions
+    @each $direction, $suffix in $spacing-directions {
+      .#{$shortcut}#{$suffix}-#{$name} {
+        #{$property}-#{$direction}: $value !important;
+      }
+    }
+
+    // Horizontal axis
+    @if $spacing-horizontal != null {
+      .#{$shortcut}#{$spacing-horizontal}-#{$name} {
+        #{$property}-left: $value !important;
+        #{$property}-right: $value !important;
+      }
+    }
+
+    // Vertical axis
+    @if $spacing-vertical != null {
+      .#{$shortcut}#{$spacing-vertical}-#{$name} {
+        #{$property}-top: $value !important;
+        #{$property}-bottom: $value !important;
+      }
+    }
+  }
+}
+
 // Float
 
 .is-clearfix {
@@ -469,4 +515,62 @@ $displays: "block" "flex" "inline" "inline-block" "inline-flex";
 
 .is-relative {
   position: relative !important;
+}
+
+$flex-direction-values: row, row-reverse, column, column-reverse;
+
+@each $value in $flex-direction-values {
+  .is-flex-direction-#{$value} {
+    flex-direction: $value !important;
+  }
+}
+
+$flex-wrap-values: nowrap, wrap, wrap-reverse;
+
+@each $value in $flex-wrap-values {
+  .is-flex-wrap-#{$value} {
+    flex-wrap: $value !important;
+  }
+}
+
+$justify-content-values: flex-start, flex-end, center, space-between, space-around, space-evenly, start, end, left, right;
+
+@each $value in $justify-content-values {
+  .is-justify-content-#{$value} {
+    justify-content: $value !important;
+  }
+}
+
+$align-content-values: flex-start, flex-end, center, space-between, space-around, space-evenly, stretch, start, end, baseline;
+
+@each $value in $align-content-values {
+  .is-align-content-#{$value} {
+    align-content: $value !important;
+  }
+}
+
+$align-items-values: stretch, flex-start, flex-end, center, baseline, start, end, self-start, self-end;
+
+@each $value in $align-items-values {
+  .is-align-items-#{$value} {
+    align-items: $value !important;
+  }
+}
+
+$align-self-values: auto, flex-start, flex-end, center, baseline, stretch;
+
+@each $value in $align-self-values {
+  .is-align-self-#{$value} {
+    align-self: $value !important;
+  }
+}
+
+$flex-operators: grow, shrink;
+
+@each $operator in $flex-operators {
+  @for $i from 0 through 5 {
+    .is-flex-#{$operator}-#{$i} {
+      flex-#{$operator}: $i !important;
+    }
+  }
 }
