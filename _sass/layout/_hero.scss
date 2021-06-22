@@ -233,7 +233,9 @@ $hero-body-padding-large: 18rem 1.5rem !default;
   flex-shrink: 0;
   padding: $hero-body-padding;
 }
-
+.gray-hero {
+  background-color: #f7fafc;
+}
 .home-hero {
   background-color: #e8f3f1;
   &.light {
