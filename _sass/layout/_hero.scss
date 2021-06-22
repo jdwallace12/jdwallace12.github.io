@@ -276,17 +276,17 @@ $hero-body-padding-large: 18rem 1.5rem !default;
   max-height:150px;
 }
 
-.content {
-  position:relative;
-  height:20vh;
-  text-align:center;
-  background-color: white;
-}
+// .hero-content {
+//   position:relative;
+//   height:20vh;
+//   text-align:center;
+//   background-color: white;
+// }
 
 /* Animation */
 
 .parallax > use {
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 .parallax > use:nth-child(1) {
   animation-delay: -2s;
