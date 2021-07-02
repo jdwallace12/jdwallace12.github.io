@@ -656,3 +656,25 @@ a.navbar-item,
     min-height: calc(100vh - #{$navbar-height});
   }
 }
+
+.darkmode--activated .navbar {
+  background-color: #212121;
+}
+.darkmode--activated .navbar.has-shadow {
+  box-shadow: 0 2px 0 0 #1f1e1e;
+}
+.darkmode--activated .navbar-item,
+.darkmode--activated .navbar-link {
+    color: #718196;
+}
+
+.darkmode--activated .navbar svg path {
+  fill: #e2e8f0;
+}
+
+.darkmode--activated .header svg .parallax use:first-of-type {
+ fill: #282a2c;
+}
+.darkmode--activated .header svg .parallax use:nth-of-type(n+1) {
+ fill: rgba(40, 42, 44, 48%);
+}

@@ -77,14 +77,16 @@ $subtitle-negative-margin: -1.25rem !default;
   }
 }
 .darkmode--activated .title {
-  color: #cbd5e0!important;
+  color: #e2e8f0!important;
 }
 .darkmode--activated .subtitle {
   color: #718096!important;
 }
-.darkmode--activated p,
-.darkmode--activated strong {
-    color: #718096!important;
+.darkmode--activated p {
+  color: #718096!important;
+}
+.darkmode--activated .footer strong {
+    color: #212121!important;
 }
 .subtitle {
   color: $subtitle-color;
