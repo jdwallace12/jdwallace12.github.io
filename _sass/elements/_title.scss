@@ -64,9 +64,6 @@ $subtitle-negative-margin: -1.25rem !default;
   &:not(.is-spaced) + .subtitle {
     margin-top: $subtitle-negative-margin;
   }
-  &.hover {
-
-  }
   &.is-huge {
     font-size: 5rem;
   }
@@ -79,7 +76,15 @@ $subtitle-negative-margin: -1.25rem !default;
     }
   }
 }
-
+.darkmode--activated .title {
+  color: #cbd5e0!important;
+}
+.darkmode--activated .subtitle {
+  color: #718096!important;
+}
+.darkmode--activated p {
+    color: #718096!important;
+}
 .subtitle {
   color: $subtitle-color;
 
