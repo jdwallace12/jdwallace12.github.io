@@ -484,3 +484,6 @@ $button-static-border-color: $border !default;
 .darkmode-toggle {
   z-index: 9;
 }
+.darkmode--activated .button.is-primary {
+    background-color: #68d391;
+}
