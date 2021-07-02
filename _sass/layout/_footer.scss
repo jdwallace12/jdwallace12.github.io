@@ -10,3 +10,11 @@ $footer-padding: 3rem 1.5rem 6rem !default;
     color: $footer-color;
   }
 }
+
+.darkmode--activated .footer {
+  background-color: #afafaf;
+}
+
+.darkmode--activated .footer-wave {
+  fill: #afafaf;
+}

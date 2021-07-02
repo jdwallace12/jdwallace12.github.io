@@ -82,7 +82,8 @@ $subtitle-negative-margin: -1.25rem !default;
 .darkmode--activated .subtitle {
   color: #718096!important;
 }
-.darkmode--activated p {
+.darkmode--activated p,
+.darkmode--activated strong {
     color: #718096!important;
 }
 .subtitle {
