@@ -64,6 +64,9 @@ $subtitle-negative-margin: -1.25rem !default;
   &:not(.is-spaced) + .subtitle {
     margin-top: $subtitle-negative-margin;
   }
+  &.hover {
+
+  }
   &.is-huge {
     font-size: 5rem;
   }

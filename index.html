@@ -8,7 +8,7 @@ description: "John Wallace web developer and designer"
   <!--Content before waves-->
   <div class="inner-header flex is-flex-direction-column">
 
-    <h1 class="title is-huge is-size-2-mobile has-text-white">John Wallace</h1>
+    <h1 class="title is-huge is-size-2-mobile has-text-white hover">John Wallace</h1>
     <p class="subtitle is-3 is-size-5-mobile has-text-white">Web Developer and Designer</p>
     <a href="mailto:jdwallace12@gmail.com" class="button is-primary button-special box-shadow-lift is-large is-rounded mt-4">
       <span><strong>Contact Me</strong></span>
@@ -43,33 +43,6 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
-
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column margin-center">
-        <div class="columns">
-          <div class="column is-2 margin-center has-text-centered">
-
-          </div>
-          <div class="column">
-            <p class="title is-2">Jersey Griggs</p>
-            <p class="subtitle is-4 has-text-grey mt-1">Freelance writing website with sortable portfolio built with CSS grid.</p>
-            <p class="subtitle is-4 has-text-grey">
-              <a href="https://jersey-griggs.github.io/">View Website</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <a class="column" href="https://jersey-griggs.github.io/">
-        <div class="box box-shadow-lift">
-          <img src="/assets/images/jersey-griggs.png" alt="Jersey Griggs">
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="container">
     <div class="columns">
@@ -79,7 +52,7 @@ description: "John Wallace web developer and designer"
           </div>
           <div class="column">
             <p class="title is-2">McLane Construction</p>
-            <p class="subtitle is-4 has-text-grey mt-1">A Montana based construction company website with callapsable header built with Bulma.</p>
+            <p class="subtitle is-4 has-text-grey">A Montana based construction company website with callapsable header built with Bulma.</p>
             <p class="subtitle is-4 has-text-grey">
               <a href="https://mclaneconstruction.com/">View Website</a>
             </p>
@@ -96,7 +69,31 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column margin-center">
+        <div class="columns">
+          <div class="column is-2 margin-center has-text-centered">
 
+          </div>
+          <div class="column">
+            <p class="title is-2">Jersey Griggs</p>
+            <p class="subtitle is-4 has-text-grey">Freelance writing website with sortable portfolio built with CSS grid.</p>
+            <p class="subtitle is-4 has-text-grey">
+              <a href="https://jersey-griggs.github.io/">View Website</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <a class="column" href="https://jersey-griggs.github.io/">
+        <div class="box box-shadow-lift">
+          <img src="/assets/images/jersey-griggs.png" alt="Jersey Griggs">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="container">
     <div class="columns">
@@ -106,7 +103,7 @@ description: "John Wallace web developer and designer"
           </div>
           <div class="column">
             <p class="title is-2">AppNeta</p>
-            <p class="subtitle is-4 has-text-grey mt-1">AppNeta's marketing website.</p>
+            <p class="subtitle is-4 has-text-grey">AppNeta's marketing website.</p>
             <p class="subtitle is-4 has-text-grey">
               <a href="https://www.appneta.com/">View Website</a>
             </p>
@@ -130,7 +127,7 @@ description: "John Wallace web developer and designer"
           </div>
           <div class="column">
             <p class="title is-2">AppNeta Documentation</p>
-            <p class="subtitle is-4 has-text-grey mt-1">AppNeta's documentation website.</p>
+            <p class="subtitle is-4 has-text-grey">AppNeta's documentation website.</p>
             <p class="subtitle is-4 has-text-grey">
               <a href="https://docs.appneta.com/">View Website</a>
             </p>
@@ -158,7 +155,7 @@ description: "John Wallace web developer and designer"
           </div>
           <div class="column">
             <p class="title is-2">Pixyllated</p>
-            <p class="subtitle is-4 has-text-grey mt-1">Jekyll Blog Theme with Semantic UI.</p>
+            <p class="subtitle is-4 has-text-grey">Jekyll Blog Theme with Semantic UI.</p>
             <p class="subtitle is-4 has-text-grey">
               <a href="https://jdwallace12.github.io/pixyllated/">View Website</a>
             </p>
@@ -208,7 +205,7 @@ description: "John Wallace web developer and designer"
         <img src="/assets/images/html-css-js.png" alt="html css js" width="250">
       </div>
       <div class="column">
-        <img src="/assets/images/jekyllXgithub_banner.png" alt="jekyll github" width="250">
+        <img src="/assets/images/jekyll.png" alt="jekyll github" width="250">
       </div>
       <div class="column">
         <img src="/assets/images/marketo.png" alt="marketo" width="180">
@@ -225,3 +222,22 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  const options = {
+    bottom: '64px', // default: '32px'
+    right: '32px', // default: '32px'
+    left: 'unset', // default: 'unset'
+    time: '0.5s', // default: '0.3s'
+    mixColor: '#fff', // default: '#fff'
+    backgroundColor: '#fff',  // default: '#fff'
+    buttonColorDark: '#100f2c',  // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: false, // default: true,
+    label: '🌓', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+
+  const darkmode = new Darkmode(options);
+  darkmode.showWidget();
+</script>
