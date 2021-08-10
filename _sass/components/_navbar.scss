@@ -8,7 +8,7 @@ $navbar-z: 30 !default;
 $navbar-fixed-z: 30 !default;
 
 $navbar-item-color: $text !default;
-$navbar-item-hover-color: #00947e;
+$navbar-item-hover-color: $link;
 $navbar-item-hover-background-color: $scheme-main-bis !default;
 $navbar-item-active-color: $scheme-invert !default;
 $navbar-item-active-background-color: transparent !default;
@@ -17,8 +17,8 @@ $navbar-item-img-max-height: 1.75rem !default;
 $navbar-burger-color: $navbar-item-color !default;
 
 $navbar-tab-hover-background-color: transparent !default;
-$navbar-tab-hover-border-bottom-color: #00947e;
-$navbar-tab-active-color: #00947e;
+$navbar-tab-hover-border-bottom-color: $link;
+$navbar-tab-active-color: $link;
 $navbar-tab-active-background-color: transparent !default;
 $navbar-tab-active-border-bottom-color: $link !default;
 $navbar-tab-active-border-bottom-style: solid !default;
