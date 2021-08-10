@@ -79,12 +79,15 @@ $subtitle-negative-margin: -1.25rem !default;
 .darkmode--activated .title {
   color: #e2e8f0!important;
 }
-.darkmode--activated .subtitle {
+.darkmode--activated .subtitle,
+.darkmode--activated p,
+.darkmode--activated ul,
+.darkmode--activated li,
+.darkmode--activated strong,
+.darkmode--activated span {
   color: #718096!important;
 }
-.darkmode--activated p {
-  color: #718096!important;
-}
+
 .darkmode--activated .footer strong {
     color: #212121!important;
 }
