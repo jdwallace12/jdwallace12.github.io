@@ -4,3 +4,6 @@ _site/index.html
 _site/index.html
 *.xml
 _site/feed.xml
+*.xml
+_site/feed.xml
+_site/index.html
