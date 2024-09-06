@@ -21,3 +21,10 @@ h1, h2, h3, h4, h5, h6 {
   position: sticky;
   top: 0;
 }
+
+.logos {
+  img {
+    max-height: 72px;
+    object-fit: contain;
+  }
+}
