@@ -3,6 +3,10 @@ $bodyColor: #000000;
 $bodyFont: "Nunito Sans", sans-serif; 
 $headingFont: "Poppins", sans-serif;
 
+html {
+  scroll-padding-top: 60px;
+}
+
 body {
   background: $backgroundColor;
   color: $bodyColor;
