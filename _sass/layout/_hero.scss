@@ -258,7 +258,9 @@ $hero-body-padding-large: 18rem 1.5rem !default;
   color: white;
 }
 .darkmode--activated .header {
-  background: linear-gradient(60deg, #1c3046 0%, #2a5e94 100%);
+  background: 
+  url('/assets/images/az-subtle.png'), 
+  linear-gradient(60deg, #1c3046 0%, #2a5e94 100%);
 }
 
 .inner-header {
