@@ -247,10 +247,15 @@ $hero-body-padding-large: 18rem 1.5rem !default;
 }
 
 .header {
-  position:relative;
-  text-align:center;
-  background: linear-gradient(60deg, #63b3ed 0%, #2b6cb0 100%);
-  color:white;
+  position: relative;
+  text-align: center;
+  background: 
+    /* Texture Overlay */
+    url('/assets/images/az-subtle.png'), 
+    /* Gradient Background */
+    linear-gradient(60deg, #63b3ed 0%, #2b6cb0 100%);
+  // background-size: cover; /* Ensures the texture covers the entire element */
+  color: white;
 }
 .darkmode--activated .header {
   background: linear-gradient(60deg, #1c3046 0%, #2a5e94 100%);
