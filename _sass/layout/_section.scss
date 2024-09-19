@@ -4,7 +4,8 @@ $section-padding-large: 18rem 1.5rem !default;
 
 .section {
   padding: $section-padding;
-
+  transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+box-shadow: none;
   // Responsiveness
   @include desktop {
     // Sizes
@@ -19,10 +20,7 @@ $section-padding-large: 18rem 1.5rem !default;
   &.is-offset-margin-top {
     margin-top: -5rem;
   }
-  &.hover {
-    transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-    &:hover {
-      background-color: #f2f3f3;
-    }
+  &.is-white {
+
   }
 }
