@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry.target.classList.remove('is-white');  // Remove the class when section leaves the viewport
       }
     });
-  }, { threshold: .8 });  // Threshold can be adjusted based on when you want the effect to trigger (e.g. 0.5 means 50% visibility)
+  }, { threshold: 1 });  // Threshold can be adjusted based on when you want the effect to trigger (e.g. 0.5 means 50% visibility)
 
   sections.forEach(section => {
     observer.observe(section);  // Start observing each section
