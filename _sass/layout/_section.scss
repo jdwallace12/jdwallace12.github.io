@@ -5,9 +5,11 @@ $section-padding-large: 18rem 1.5rem !default;
 .section {
   padding: $section-padding;
   transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-box-shadow: none;
+  box-shadow: none;
+
   // Responsiveness
   @include desktop {
+
     // Sizes
     &.is-medium {
       padding: $section-padding-medium;
@@ -17,10 +19,18 @@ box-shadow: none;
       padding: $section-padding-large;
     }
   }
+
   &.is-offset-margin-top {
     margin-top: -5rem;
   }
-  &.is-white {
 
+  &.is-white {
+    .subtitle {
+      a {
+        text-decoration:  underline;
+        text-underline-offset: 0.3rem;
+        text-decoration-thickness: 4px;
+      }
+    }
   }
 }
