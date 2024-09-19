@@ -43,7 +43,7 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -69,7 +69,7 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -88,14 +88,14 @@ description: "John Wallace web developer and designer"
       <a class="column" href="https://bmg360.com/">
         <div class="box box-shadow-lift">
           <figure class="image">
-            <img src="/assets/images/bmg360.webp" alt="BMG 360">
+            <img src="/assets/images/bmg360.webp" alt="BMG 360" loading="lazy">
           </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -114,14 +114,14 @@ description: "John Wallace web developer and designer"
       <a class="column" href="https://www.policypaul.com/">
         <div class="box box-shadow-lift">
           <figure class="image">
-            <img src="/assets/images/policy-paul.webp" alt="Policy Paul">
+            <img src="/assets/images/policy-paul.webp" alt="Policy Paul" loading="lazy">
           </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -140,14 +140,14 @@ description: "John Wallace web developer and designer"
       <a class="column" href="https://mclaneconstruction.com/">
         <div class="box box-shadow-lift">
           <figure class="image">
-            <img src="/assets/images/mclane2.png" alt="Mclane Construction">
+            <img src="/assets/images/mclane2.png" alt="Mclane Construction" loading="lazy">
           </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -166,13 +166,15 @@ description: "John Wallace web developer and designer"
       </div>
       <a class="column" href="https://jersey-griggs.github.io/">
         <div class="box box-shadow-lift">
-          <img src="/assets/images/jersey-griggs-2024.webp" alt="Jersey Griggs">
+          <figure class="image">
+            <img src="/assets/images/jersey-griggs-2024.webp" alt="Jersey Griggs" loading="lazy">
+          </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -190,13 +192,15 @@ description: "John Wallace web developer and designer"
       </div>
       <a class="column" href="https://www.appneta.com/">
         <div class="box box-shadow-lift">
-          <img src="/assets/images/appneta.png" alt="AppNeta">
+          <figure class="image">
+            <img src="/assets/images/appneta.png" alt="AppNeta" loading="lazy">
+          </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -214,14 +218,16 @@ description: "John Wallace web developer and designer"
       </div>
       <a class="column" href="https://docs.appneta.com/">
         <div class="box box-shadow-lift">
-          <img src="/assets/images/docsappneta.png" alt="AppNeta Documentation">
+          <figure class="image">
+            <img src="/assets/images/docsappneta.png" alt="AppNeta Documentation" loading="lazy">
+          </figure>
         </div>
       </a>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section hover">
   <div class="container">
     <div class="columns">
       <div class="column margin-center">
@@ -243,7 +249,7 @@ description: "John Wallace web developer and designer"
       <a class="column" href="https://jdwallace12.github.io/pixyllated/">
         <div class="box box-shadow-lift">
           <figure class="image">
-            <img src="/assets/images/pixyllated.png" alt="Pixyllated">
+            <img src="/assets/images/pixyllated.png" alt="Pixyllated" loading="lazy">
           </figure>
         </div>
       </a>
@@ -314,3 +320,21 @@ description: "John Wallace web developer and designer"
     </div>
   </div>
 </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll('.image');
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);  // Stop observing once animated
+      }
+    });
+  }, { threshold: 0.1 });  // Adjust threshold as needed
+
+  images.forEach(image => {
+    observer.observe(image);
+  });
+});
+  </script>
