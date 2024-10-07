@@ -23,14 +23,4 @@ $section-padding-large: 18rem 1.5rem !default;
   &.is-offset-margin-top {
     margin-top: -5rem;
   }
-
-  &.is-white {
-    .subtitle {
-      a {
-        text-decoration:  underline;
-        text-underline-offset: 0.3rem;
-        text-decoration-thickness: 2px;
-      }
-    }
-  }
 }
