@@ -4,10 +4,9 @@ title: "John Wallace"
 description: "John Wallace web developer and designer"
 ---
 <div class="header">
-
+  <canvas id="particle-canvas"></canvas>
   <!--Content before waves-->
   <div class="inner-header flex is-flex-direction-column">
-
     <h1 class="title is-huge is-size-2-mobile has-text-white hover">John Wallace</h1>
     <p class="subtitle is-3 is-size-5-mobile has-text-white">Front End Developer and Designer</p>
     <a href="mailto:jdwallace12@gmail.com" class="button is-primary button-special box-shadow-lift is-large is-rounded mt-4">
@@ -380,3 +379,134 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
   </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    const header = document.querySelector('.header');
+
+    // Set canvas size
+    function resizeCanvas() {
+      canvas.width = header.offsetWidth;
+      canvas.height = header.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let particles = [];
+    let mouse = {
+      x: null,
+      y: null,
+      radius: 200
+    };
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 20 + 1;
+        this.baseX = x;
+        this.baseY = y;
+        this.density = (Math.random() * 30) + 1;
+        this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+        this.velocity = {
+          x: (Math.random() - 0.5) * 2,
+          y: (Math.random() - 0.5) * 2
+        };
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      update() {
+        // Mouse repulsion
+        if (mouse.x != null && mouse.y != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < mouse.radius) {
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
+            let force = (mouse.radius - distance) / mouse.radius;
+
+            this.velocity.x -= forceDirectionX * force * 2;
+            this.velocity.y -= forceDirectionY * force * 2;
+          }
+        }
+
+        // Bounce off walls
+        if (this.x + this.velocity.x > canvas.width || this.x + this.velocity.x < 0) {
+          this.velocity.x *= -0.8;
+        }
+        if (this.y + this.velocity.y > canvas.height || this.y + this.velocity.y < 0) {
+          this.velocity.y *= -0.8;
+        }
+
+        // Apply velocity with damping
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.velocity.x *= 0.98;
+        this.velocity.y *= 0.98;
+
+        // Draw the particle
+        this.draw();
+      }
+    }
+
+    // Create initial particles
+    function init() {
+      particles = [];
+      const numberOfParticles = (canvas.width * canvas.height) / 15000;
+      for (let i = 0; i < numberOfParticles; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        particles.push(new Particle(x, y));
+      }
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => particle.update());
+      requestAnimationFrame(animate);
+    }
+
+    // Track mouse movement
+    header.addEventListener('mousemove', function (event) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+
+      // Create new particles at mouse position
+      if (Math.random() < 0.5) { // Adjust this value to control particle creation frequency
+        particles.push(new Particle(mouse.x, mouse.y));
+      }
+    });
+
+    header.addEventListener('mouseleave', function () {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    // Add particles on click
+    header.addEventListener('click', function (event) {
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      // Add 10 particles on click
+      for (let i = 0; i < 10; i++) {
+        particles.push(new Particle(x, y));
+      }
+    });
+
+    // Initialize and start animation
+    init();
+    animate();
+  });
+</script>
