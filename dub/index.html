@@ -1,0 +1,216 @@
+---
+layout: default
+title: "Dub Reggae Mixer"
+description: "Mix your own dub reggae riddim!"
+---
+
+<div class="section has-background-white">
+  <div class="container">
+    <h1 class="title has-text-success has-text-centered">🎛 Dub Reggae Mixer</h1>
+    <p class="subtitle has-text-dark has-text-centered">
+      Mix your own riddim — echo, sweep filters, drop airhorns and sirens!
+    </p>
+
+    <!-- FX Buttons -->
+    <div class="buttons is-centered mb-5">
+      <button class="button is-success is-rounded" onclick="playFX('airhorn')">📢 Airhorn</button>
+      <button class="button is-success is-rounded" onclick="playFX('siren')">🚨 Siren</button>
+      <button class="button is-success is-rounded" onclick="playFX('laser')">🔫 Laser</button>
+      <button class="button is-success is-rounded" onclick="playFX('scratch')">💿 Scratch</button>
+    </div>
+
+    <!-- FX Controls -->
+    <div class="columns is-centered mb-5">
+      <div class="column is-3">
+        <label class="label has-text-success">Echo Amount</label>
+        <input class="slider is-success is-fullwidth" type="range" id="echo" min="0" max="1" step="0.01" value="0.3">
+      </div>
+      <div class="column is-3">
+        <label class="label has-text-success">Delay Time</label>
+        <input class="slider is-success is-fullwidth" type="range" id="delayTime" min="0" max="1.5" step="0.01" value="0.4">
+      </div>
+      <div class="column is-3">
+        <label class="label has-text-success">Filter Sweep</label>
+        <input class="slider is-success is-fullwidth" type="range" id="filter" min="200" max="8000" step="50" value="8000">
+      </div>
+    </div>
+
+    <!-- Beats -->
+    <h2 class="title is-4 has-text-success has-text-centered">Beats</h2>
+    <div class="columns is-centered">
+      <!-- Beat 1 -->
+      <div class="column is-3 has-text-centered">
+        <strong>Beat 1</strong>
+        <button class="button is-success is-light mt-2" onclick="toggleBeat('beat')">▶️ Play / Pause</button>
+        <input class="slider is-success mt-2" type="range" id="beat-volume" min="0" max="1" step="0.01" value="0.8">
+        <canvas id="beat-analyzer" width="200" height="100" class="mt-2"></canvas>
+      </div>
+
+      <!-- Beat 2 -->
+      <div class="column is-3 has-text-centered">
+        <strong>Beat 2</strong>
+        <button class="button is-success is-light mt-2" onclick="toggleBeat('beat1')">▶️ Play / Pause</button>
+        <input class="slider is-success mt-2" type="range" id="beat1-volume" min="0" max="1" step="0.01" value="0.8">
+        <canvas id="beat1-analyzer" width="200" height="100" class="mt-2"></canvas>
+      </div>
+
+      <!-- Beat 3 -->
+      <div class="column is-3 has-text-centered">
+        <strong>Beat 3</strong>
+        <button class="button is-success is-light mt-2" onclick="toggleBeat('beat2')">▶️ Play / Pause</button>
+        <input class="slider is-success mt-2" type="range" id="beat2-volume" min="0" max="1" step="0.01" value="0.8">
+        <canvas id="beat2-analyzer" width="200" height="100" class="mt-2"></canvas>
+      </div>
+    </div>
+
+    <!-- Master Analyzer -->
+    <h2 class="title is-5 has-text-dark has-text-centered mt-5">Master Spectrum</h2>
+    <canvas id="master-analyzer" width="600" height="150" class="is-block mx-auto"></canvas>
+
+  </div>
+</div>
+
+<script>
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// Beat files
+const beatFiles = {
+  beat: "/assets/dubfx/beat.mp3",
+  beat1: "/assets/dubfx/beat-2.mp3",
+  beat2: "/assets/dubfx/beat-3.mp3"
+};
+
+let beats = { beat: null, beat1: null, beat2: null };
+let sources = { beat: null, beat1: null, beat2: null };
+let gainNodes = { beat: null, beat1: null, beat2: null };
+let analysers = { beat: null, beat1: null, beat2: null };
+
+// Preload beats
+async function loadBeat(key) {
+  const response = await fetch(beatFiles[key]);
+  const arrayBuffer = await response.arrayBuffer();
+  beats[key] = await audioCtx.decodeAudioData(arrayBuffer);
+}
+Object.keys(beatFiles).forEach(key => loadBeat(key));
+
+// FX files
+const fxFiles = {
+  airhorn: "/assets/dubfx/airhorn.mp3",
+  siren: "/assets/dubfx/siren.mp3",
+  laser: "/assets/dubfx/laser.mp3",
+  scratch: "/assets/dubfx/scratch.mp3"
+};
+
+async function playFX(type) {
+  const response = await fetch(fxFiles[type]);
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+  const source = audioCtx.createBufferSource();
+  source.buffer = buffer;
+
+  const delay = audioCtx.createDelay(2);
+  const feedback = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+
+  delay.delayTime.value = document.getElementById("delayTime").value;
+  feedback.gain.value = document.getElementById("echo").value;
+  filter.frequency.value = document.getElementById("filter").value;
+
+  source.connect(filter);
+  filter.connect(delay);
+  delay.connect(feedback);
+  feedback.connect(delay);
+  delay.connect(audioCtx.destination);
+  filter.connect(audioCtx.destination);
+
+  source.start();
+}
+
+// Toggle beats with spectrum analyzer
+function toggleBeat(key) {
+  if (sources[key]) {
+    sources[key].stop();
+    sources[key] = null;
+    analysers[key] = null;
+  } else {
+    const source = audioCtx.createBufferSource();
+    const gainNode = audioCtx.createGain();
+    const analyser = audioCtx.createAnalyser();
+
+    source.buffer = beats[key];
+    source.loop = true;
+
+    const volSlider = document.getElementById(key + "-volume");
+    gainNode.gain.value = volSlider.value;
+    volSlider.addEventListener("input", () => {
+      gainNode.gain.value = volSlider.value;
+    });
+
+    source.connect(gainNode).connect(analyser).connect(audioCtx.destination);
+
+    source.start();
+    sources[key] = source;
+    gainNodes[key] = gainNode;
+    analysers[key] = analyser;
+
+    drawAnalyzer(key, analyser);
+    drawMaster();
+  }
+}
+
+// Draw individual analyzer
+function drawAnalyzer(key, analyser) {
+  const canvas = document.getElementById(key + "-analyzer");
+  const ctx = canvas.getContext("2d");
+  analyser.fftSize = 256;
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+
+  function draw() {
+    if (!analysers[key]) return;
+    requestAnimationFrame(draw);
+    analyser.getByteFrequencyData(dataArray);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = canvas.width / bufferLength;
+    let x = 0;
+    for (let i = 0; i < bufferLength; i++) {
+      const barHeight = dataArray[i];
+      ctx.fillStyle = key === 'beat' ? '#ff5555' : key === 'beat1' ? '#55ff55' : '#5555ff';
+      ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+      x += barWidth;
+    }
+  }
+  draw();
+}
+
+// Master analyzer
+const masterCanvas = document.getElementById("master-analyzer");
+const masterCtx = masterCanvas.getContext("2d");
+const masterAnalyser = audioCtx.createAnalyser();
+masterAnalyser.fftSize = 256;
+
+function drawMaster() {
+  requestAnimationFrame(drawMaster);
+  const combinedArray = new Uint8Array(masterAnalyser.frequencyBinCount);
+  masterCtx.fillStyle = "#000000";
+  masterCtx.fillRect(0, 0, masterCanvas.width, masterCanvas.height);
+
+  // combine each active track's data
+  Object.values(analysers).forEach(analyser => {
+    if (!analyser) return;
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(dataArray);
+    const barWidth = masterCanvas.width / analyser.frequencyBinCount;
+    let x = 0;
+    for (let i = 0; i < analyser.frequencyBinCount; i++) {
+      const barHeight = dataArray[i] / 2;
+      masterCtx.fillStyle = `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},0.5)`;
+      masterCtx.fillRect(x, masterCanvas.height - barHeight, barWidth, barHeight);
+      x += barWidth;
+    }
+  });
+}
+</script>
