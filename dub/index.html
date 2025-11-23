@@ -3,395 +3,468 @@ layout: default
 title: "Dub Reggae Mixer"
 description: "Full-featured Dub Reggae Mixer!"
 ---
-
 <div class="section has-background-white">
-  <div class="container">
-    <h1 class="title has-text-success has-text-centered">🎛 Dub Reggae Mixer</h1>
-    <p class="subtitle has-text-dark has-text-centered">
-      Mix your own riddim — sync beats, apply FX, and master your sound!
-    </p>
-
-    <!-- FX Controls -->
-    <h2 class="title is-5 has-text-success has-text-centered">Sound Effects</h2>
-    <div class="columns is-multiline is-centered mb-5">
-      <!-- FX cards -->
-      <div class="column is-3">
-        <div class="card">
-          <header class="card-header has-background-danger-light">
-            <p class="card-header-title has-text-danger">📢 Airhorn</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-danger is-light" onclick="toggleFX('airhorn')">▶️ Play / Pause</button>
+    <div class="container">
+      <h1 class="title has-text-success has-text-centered">🎛 Dub Reggae Mixer</h1>
+      <p class="subtitle has-text-dark has-text-centered">
+        Mix your own riddim — sync beats, apply FX, and master your sound!
+      </p>
+  
+      <!-- FX Controls -->
+      <h2 class="title is-5 has-text-success has-text-centered">Sound Effects</h2>
+      <div class="columns is-multiline is-centered mb-5">
+  
+        <!-- Airhorn -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-danger-light">
+              <p class="card-header-title has-text-danger">📢 Airhorn</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-danger is-light" onclick="toggleFX('airhorn')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-danger is-fullwidth" type="range" id="airhorn-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="airhorn-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="airhorn-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="airhorn-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="airhorn-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-danger is-fullwidth" type="range" id="airhorn-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="airhorn-echo" min="0" max="1" step="0.01" value="0.3">
-            <label class="label mt-2">Delay</label>
-            <input class="slider is-info is-fullwidth" type="range" id="airhorn-delay" min="0" max="2" step="0.01" value="0.4">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-success is-fullwidth" type="range" id="airhorn-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="airhorn-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-
-      <!-- Repeat FX cards for Siren, Laser, Scratch -->
-      <div class="column is-3">
-        <div class="card">
-          <header class="card-header has-background-warning-light">
-            <p class="card-header-title has-text-warning">🚨 Siren</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-warning is-light" onclick="toggleFX('siren')">▶️ Play / Pause</button>
+  
+        <!-- Siren -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-warning-light">
+              <p class="card-header-title has-text-warning">🚨 Siren</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-warning is-light" onclick="toggleFX('siren')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="siren-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="siren-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="siren-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="siren-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="siren-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="siren-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="siren-echo" min="0" max="1" step="0.01" value="0.3">
-            <label class="label mt-2">Delay</label>
-            <input class="slider is-info is-fullwidth" type="range" id="siren-delay" min="0" max="2" step="0.01" value="0.4">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-success is-fullwidth" type="range" id="siren-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="siren-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-
-      <div class="column is-3">
-        <div class="card">
-          <header class="card-header has-background-info-light">
-            <p class="card-header-title has-text-info">🔫 Laser</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-info is-light" onclick="toggleFX('laser')">▶️ Play / Pause</button>
+  
+        <!-- Laser -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-info-light">
+              <p class="card-header-title has-text-info">🔫 Laser</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-info is-light" onclick="toggleFX('laser')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-info is-fullwidth" type="range" id="laser-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="laser-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="laser-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="laser-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="laser-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-info is-fullwidth" type="range" id="laser-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="laser-echo" min="0" max="1" step="0.01" value="0.3">
-            <label class="label mt-2">Delay</label>
-            <input class="slider is-info is-fullwidth" type="range" id="laser-delay" min="0" max="2" step="0.01" value="0.4">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-success is-fullwidth" type="range" id="laser-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="laser-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-
-      <div class="column is-3">
-        <div class="card">
-          <header class="card-header has-background-success-light">
-            <p class="card-header-title has-text-success">💿 Scratch</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-success is-light" onclick="toggleFX('scratch')">▶️ Play / Pause</button>
+  
+        <!-- Scratch -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-success-light">
+              <p class="card-header-title has-text-success">💿 Scratch</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleFX('scratch')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-success is-fullwidth" type="range" id="scratch-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="scratch-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="scratch-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="scratch-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="scratch-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-success is-fullwidth" type="range" id="scratch-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="scratch-echo" min="0" max="1" step="0.01" value="0.3">
-            <label class="label mt-2">Delay</label>
-            <input class="slider is-info is-fullwidth" type="range" id="scratch-delay" min="0" max="2" step="0.01" value="0.4">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-success is-fullwidth" type="range" id="scratch-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="scratch-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Master Controls -->
-    <div class="box mb-5">
-      <h2 class="title is-5">Master Controls</h2>
-      <label class="label">Master Volume</label>
-      <input class="slider is-success is-fullwidth" type="range" id="master-volume" min="0" max="1" step="0.01" value="0.8">
-    </div>
-
-    <!-- Beat Tracks -->
-    <h2 class="title is-5 has-text-success has-text-centered">Beats</h2>
-    <div id="tracks" class="columns is-multiline">
-
-      <!-- Beat Track Cards -->
-      <!-- Beat 1 -->
-      <div class="column is-4">
-        <div class="card">
-          <header class="card-header has-background-success-light">
-            <p class="card-header-title has-text-success">Beat 1</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-success is-light" onclick="toggleBeat('beat')">▶️ Play / Pause</button>
-              <button class="button is-info is-light" onclick="muteTrack('beat')">🔇 Mute</button>
-              <button class="button is-warning is-light" onclick="soloTrack('beat')">🎧 Solo</button>
+  
+        <!-- Drum Roll -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-dark-light">
+              <p class="card-header-title has-text-dark">🥁 Drum Roll</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-dark is-light" onclick="toggleFX('drumroll')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-dark is-fullwidth" type="range" id="drumroll-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="drumroll-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="drumroll-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="drumroll-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="drumroll-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-success is-fullwidth" type="range" id="beat-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Pan</label>
-            <input class="slider is-info is-fullwidth" type="range" id="beat-pan" min="-1" max="1" step="0.01" value="0">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="beat-echo" min="0" max="1" step="0.01" value="0.2">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-danger is-fullwidth" type="range" id="beat-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="beat-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-
-      <!-- Beat 2 -->
-      <div class="column is-4">
-        <div class="card">
-          <header class="card-header has-background-success-light">
-            <p class="card-header-title has-text-success">Beat 2</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-success is-light" onclick="toggleBeat('beat1')">▶️ Play / Pause</button>
-              <button class="button is-info is-light" onclick="muteTrack('beat1')">🔇 Mute</button>
-              <button class="button is-warning is-light" onclick="soloTrack('beat1')">🎧 Solo</button>
+  
+        <!-- Flute -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-primary-light">
+              <p class="card-header-title has-text-primary">🎵 Flute</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-primary is-light" onclick="toggleFX('flute')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-primary is-fullwidth" type="range" id="flute-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="flute-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="flute-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="flute-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="flute-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-success is-fullwidth" type="range" id="beat1-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Pan</label>
-            <input class="slider is-info is-fullwidth" type="range" id="beat1-pan" min="-1" max="1" step="0.01" value="0">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="beat1-echo" min="0" max="1" step="0.01" value="0.2">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-danger is-fullwidth" type="range" id="beat1-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="beat1-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
-      </div>
-
-      <!-- Beat 3 -->
-      <div class="column is-4">
-        <div class="card">
-          <header class="card-header has-background-success-light">
-            <p class="card-header-title has-text-success">Beat 3</p>
-          </header>
-          <div class="card-content">
-            <div class="buttons mb-2">
-              <button class="button is-success is-light" onclick="toggleBeat('beat2')">▶️ Play / Pause</button>
-              <button class="button is-info is-light" onclick="muteTrack('beat2')">🔇 Mute</button>
-              <button class="button is-warning is-light" onclick="soloTrack('beat2')">🎧 Solo</button>
+  
+        <!-- Pizzicato -->
+        <div class="column is-3">
+          <div class="card">
+            <header class="card-header has-background-purple-light">
+              <p class="card-header-title has-text-purple">🎻 Pizzicato</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-purple is-light" onclick="toggleFX('pizzicato')">▶️ Play / Pause</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-purple is-fullwidth" type="range" id="pizzicato-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="pizzicato-echo" min="0" max="1" step="0.01" value="0.3">
+              <label class="label mt-2">Delay</label>
+              <input class="slider is-info is-fullwidth" type="range" id="pizzicato-delay" min="0" max="2" step="0.01" value="0.4">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-success is-fullwidth" type="range" id="pizzicato-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="pizzicato-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
-            <label class="label">Volume</label>
-            <input class="slider is-success is-fullwidth" type="range" id="beat2-volume" min="0" max="1" step="0.01" value="0.8">
-            <label class="label mt-2">Pan</label>
-            <input class="slider is-info is-fullwidth" type="range" id="beat2-pan" min="-1" max="1" step="0.01" value="0">
-            <label class="label mt-2">Echo</label>
-            <input class="slider is-warning is-fullwidth" type="range" id="beat2-echo" min="0" max="1" step="0.01" value="0.2">
-            <label class="label mt-2">Filter</label>
-            <input class="slider is-danger is-fullwidth" type="range" id="beat2-filter" min="200" max="8000" step="50" value="8000">
-            <canvas id="beat2-canvas" width="300" height="80" class="mt-2"></canvas>
           </div>
         </div>
+  
       </div>
-
+  
+      <!-- Master Controls -->
+      <div class="box mb-5">
+        <h2 class="title is-5">Master Controls</h2>
+        <label class="label">Master Volume</label>
+        <input class="slider is-success is-fullwidth" type="range" id="master-volume" min="0" max="1" step="0.01" value="0.8">
+      </div>
+  
+      <!-- Beat Tracks -->
+      <h2 class="title is-5 has-text-success has-text-centered">Beats</h2>
+      <div id="tracks" class="columns is-multiline">
+  
+        <!-- Beat 1 -->
+        <div class="column is-4">
+          <div class="card">
+            <header class="card-header has-background-success-light">
+              <p class="card-header-title has-text-success">Beat 1</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleBeat('beat')">▶️ Play / Pause</button>
+                <button class="button is-info is-light" onclick="muteTrack('beat')">🔇 Mute</button>
+                <button class="button is-warning is-light" onclick="soloTrack('beat')">🎧 Solo</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-success is-fullwidth" type="range" id="beat-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Pan</label>
+              <input class="slider is-info is-fullwidth" type="range" id="beat-pan" min="-1" max="1" step="0.01" value="0">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="beat-echo" min="0" max="1" step="0.01" value="0.2">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-danger is-fullwidth" type="range" id="beat-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="beat-canvas" width="300" height="80" class="mt-2"></canvas>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Beat 2 -->
+        <div class="column is-4">
+          <div class="card">
+            <header class="card-header has-background-success-light">
+              <p class="card-header-title has-text-success">Beat 2</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleBeat('beat1')">▶️ Play / Pause</button>
+                <button class="button is-info is-light" onclick="muteTrack('beat1')">🔇 Mute</button>
+                <button class="button is-warning is-light" onclick="soloTrack('beat1')">🎧 Solo</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-success is-fullwidth" type="range" id="beat1-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Pan</label>
+              <input class="slider is-info is-fullwidth" type="range" id="beat1-pan" min="-1" max="1" step="0.01" value="0">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="beat1-echo" min="0" max="1" step="0.01" value="0.2">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-danger is-fullwidth" type="range" id="beat1-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="beat1-canvas" width="300" height="80" class="mt-2"></canvas>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Beat 3 -->
+        <div class="column is-4">
+          <div class="card">
+            <header class="card-header has-background-success-light">
+              <p class="card-header-title has-text-success">Beat 3</p>
+            </header>
+            <div class="card-content">
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleBeat('beat2')">▶️ Play / Pause</button>
+                <button class="button is-info is-light" onclick="muteTrack('beat2')">🔇 Mute</button>
+                <button class="button is-warning is-light" onclick="soloTrack('beat2')">🎧 Solo</button>
+              </div>
+              <label class="label">Volume</label>
+              <input class="slider is-success is-fullwidth" type="range" id="beat2-volume" min="0" max="1" step="0.01" value="0.8">
+              <label class="label mt-2">Pan</label>
+              <input class="slider is-info is-fullwidth" type="range" id="beat2-pan" min="-1" max="1" step="0.01" value="0">
+              <label class="label mt-2">Echo</label>
+              <input class="slider is-warning is-fullwidth" type="range" id="beat2-echo" min="0" max="1" step="0.01" value="0.2">
+              <label class="label mt-2">Filter</label>
+              <input class="slider is-danger is-fullwidth" type="range" id="beat2-filter" min="200" max="8000" step="50" value="8000">
+              <canvas id="beat2-canvas" width="300" height="80" class="mt-2"></canvas>
+            </div>
+          </div>
+        </div>
+  
+      </div>
     </div>
   </div>
-</div>
-
-<script>
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-// Beat and FX files
-const beatFiles = {
-  beat: "/assets/dubfx/beat.mp3",
-  beat1: "/assets/dubfx/beat-2.mp3",
-  beat2: "/assets/dubfx/beat-3.mp3"
-};
-const fxFiles = {
-  airhorn: "/assets/dubfx/airhorn.mp3",
-  siren: "/assets/dubfx/siren.mp3",
-  laser: "/assets/dubfx/laser.mp3",
-  scratch: "/assets/dubfx/scratch.mp3"
-};
-
-let beats = {};
-let sources = {};
-let gainNodes = {};
-let panNodes = {};
-let filterNodes = {};
-let delayNodes = {};
-let analysers = {};
-let canvasContexts = {};
-let isMuted = {};
-let soloMode = null;
-
-// Preload beats
-Object.keys(beatFiles).forEach(async key => {
-  const response = await fetch(beatFiles[key]);
-  const arrayBuffer = await response.arrayBuffer();
-  beats[key] = await audioCtx.decodeAudioData(arrayBuffer);
-});
-
-// Master gain
-const masterGain = audioCtx.createGain();
-masterGain.gain.value = 0.8;
-masterGain.connect(audioCtx.destination);
-
-// Master volume
-document.getElementById("master-volume").addEventListener("input", e => {
-  masterGain.gain.value = e.target.value;
-});
-
-// Toggle beat
-function toggleBeat(key) {
-  if (sources[key]) {
-    sources[key].stop();
-    sources[key] = null;
-  } else {
-    const source = audioCtx.createBufferSource();
-    const gainNode = audioCtx.createGain();
-    const panNode = audioCtx.createStereoPanner();
-    const filter = audioCtx.createBiquadFilter();
-    const delay = audioCtx.createDelay();
-    const analyser = audioCtx.createAnalyser();
-
-    source.buffer = beats[key];
-    source.loop = true;
-
-    gainNode.gain.value = document.getElementById(key + "-volume").value;
-    panNode.pan.value = document.getElementById(key + "-pan").value;
-    filter.frequency.value = document.getElementById(key + "-filter").value;
-    delay.delayTime.value = document.getElementById(key + "-echo").value;
-
-    document.getElementById(key + "-volume").addEventListener("input", e => { gainNode.gain.value = e.target.value; });
-    document.getElementById(key + "-pan").addEventListener("input", e => { panNode.pan.value = e.target.value; });
-    document.getElementById(key + "-filter").addEventListener("input", e => { filter.frequency.value = e.target.value; });
-    document.getElementById(key + "-echo").addEventListener("input", e => { delay.delayTime.value = e.target.value; });
-
-    source.connect(filter);
-    filter.connect(delay);
-    delay.connect(gainNode);
-    gainNode.connect(panNode);
-    panNode.connect(analyser);
-    analyser.connect(masterGain);
-
-    sources[key] = source;
-    gainNodes[key] = gainNode;
-    panNodes[key] = panNode;
-    filterNodes[key] = filter;
-    delayNodes[key] = delay;
-    analysers[key] = analyser;
-
-    const canvas = document.getElementById(key + "-canvas");
-    const ctx = canvas.getContext("2d");
-    canvasContexts[key] = ctx;
-    analyser.fftSize = 256;
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    function draw() {
-      requestAnimationFrame(draw);
-      analyser.getByteFrequencyData(dataArray);
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      const barWidth = canvas.width / bufferLength;
-      for (let i = 0; i < bufferLength; i++) {
-        const barHeight = dataArray[i] / 2;
-        ctx.fillStyle = `hsl(${i * 2}, 80%, 50%)`;
-        ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth, barHeight);
-      }
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // FX and Beat audio files
+    const fxFiles = {
+      airhorn: "/assets/dubfx/airhorn.mp3",
+      siren: "/assets/dubfx/siren.mp3",
+      laser: "/assets/dubfx/laser.mp3",
+      scratch: "/assets/dubfx/scratch.mp3",
+      drumroll: "/assets/dubfx/drum.mp3",
+      flute: "/assets/dubfx/flute.mp3",
+      pizzicato: "/assets/dubfx/pizzicato.mp3"
+    };
+    const beatFiles = {
+      beat: "/assets/dubfx/beat.mp3",
+      beat1: "/assets/dubfx/beat-2.mp3",
+      beat2: "/assets/dubfx/beat-3.mp3"
+    };
+    
+    // Nodes and state
+    let gainNodes = {};
+    let panNodes = {};
+    let filterNodes = {};
+    let delayNodes = {};
+    let feedbackNodes = {};
+    let analysers = {};
+    let canvasContexts = {};
+    let isPlaying = {};
+    let isMuted = {};
+    let soloMode = null;
+    
+    // Buffers and active sources
+    const fxBuffers = {};
+    const beatBuffers = {};
+    let fxSources = {};
+    let beatSources = {};
+    
+    // Load audio
+    async function loadAudio(url) {
+      const res = await fetch(url);
+      const arrayBuffer = await res.arrayBuffer();
+      return await audioCtx.decodeAudioData(arrayBuffer);
     }
-    draw();
-
-    source.start();
-  }
-}
-
-// Mute / Solo
-function muteTrack(key) {
-  if (!gainNodes[key]) return;
-  isMuted[key] = !isMuted[key];
-  gainNodes[key].gain.value = isMuted[key] ? 0 : document.getElementById(key + "-volume").value;
-}
-
-function soloTrack(key) {
-  if (soloMode === key) {
-    soloMode = null;
-    Object.keys(gainNodes).forEach(k => {
-      gainNodes[k].gain.value = isMuted[k] ? 0 : document.getElementById(k + "-volume").value;
+    
+    (async () => {
+      for (let key in fxFiles) fxBuffers[key] = await loadAudio(fxFiles[key]);
+      for (let key in beatFiles) beatBuffers[key] = await loadAudio(beatFiles[key]);
+    })();
+    
+    // Master gain
+    const masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.8;
+    masterGain.connect(audioCtx.destination);
+    document.getElementById("master-volume").addEventListener("input", e => {
+      masterGain.gain.value = parseFloat(e.target.value);
     });
-  } else {
-    soloMode = key;
-    Object.keys(gainNodes).forEach(k => {
-      gainNodes[k].gain.value = k === key ? document.getElementById(k + "-volume").value : 0;
-    });
-  }
-}
-
-// Toggle FX
-let fxSources = {};
-let fxGainNodes = {};
-let fxDelayNodes = {};
-let fxFilterNodes = {};
-let fxAnalysers = {};
-let fxCanvasCtx = {};
-
-function toggleFX(key) {
-  if (fxSources[key]) {
-    fxSources[key].stop();
-    fxSources[key] = null;
-  } else {
-    const source = audioCtx.createBufferSource();
-    const gainNode = audioCtx.createGain();
-    const delay = audioCtx.createDelay();
-    const filter = audioCtx.createBiquadFilter();
-    const analyser = audioCtx.createAnalyser();
-
-    fetch(fxFiles[key]).then(res => res.arrayBuffer()).then(buf => audioCtx.decodeAudioData(buf)).then(buffer => {
-      source.buffer = buffer;
-      source.loop = false;
-
-      gainNode.gain.value = document.getElementById(key + "-volume").value;
-      delay.delayTime.value = document.getElementById(key + "-delay").value;
-      filter.frequency.value = document.getElementById(key + "-filter").value;
-
-      document.getElementById(key + "-volume").addEventListener("input", e => { gainNode.gain.value = e.target.value; });
-      document.getElementById(key + "-delay").addEventListener("input", e => { delay.delayTime.value = e.target.value; });
-      document.getElementById(key + "-filter").addEventListener("input", e => { filter.frequency.value = e.target.value; });
-
-      source.connect(filter);
-      filter.connect(delay);
-      delay.connect(gainNode);
-      gainNode.connect(analyser);
+    
+    // Initialize nodes for track
+    function initTrack(name, canvasId) {
+      const gainNode = audioCtx.createGain();
+      const panNode = audioCtx.createStereoPanner();
+      const filterNode = audioCtx.createBiquadFilter();
+      const delayNode = audioCtx.createDelay();
+      const feedback = audioCtx.createGain();
+      const analyser = audioCtx.createAnalyser();
+    
+      gainNode.gain.value = 0.8;
+      panNode.pan.value = 0;
+      filterNode.type = "lowpass";
+      filterNode.frequency.value = 8000;
+      delayNode.delayTime.value = 0.4;
+      feedback.gain.value = 0.3;
+    
+      delayNode.connect(feedback);
+      feedback.connect(delayNode);
+      filterNode.connect(delayNode);
+      delayNode.connect(gainNode);
+      gainNode.connect(panNode);
+      panNode.connect(analyser);
       analyser.connect(masterGain);
-
-      fxSources[key] = source;
-      fxGainNodes[key] = gainNode;
-      fxDelayNodes[key] = delay;
-      fxFilterNodes[key] = filter;
-      fxAnalysers[key] = analyser;
-
-      const canvas = document.getElementById(key + "-canvas");
+    
+      const canvas = document.getElementById(canvasId);
       const ctx = canvas.getContext("2d");
-      fxCanvasCtx[key] = ctx;
-      analyser.fftSize = 256;
+    
+      gainNodes[name] = gainNode;
+      panNodes[name] = panNode;
+      filterNodes[name] = filterNode;
+      delayNodes[name] = delayNode;
+      feedbackNodes[name] = feedback;
+      analysers[name] = analyser;
+      canvasContexts[name] = ctx;
+      isPlaying[name] = false;
+      isMuted[name] = false;
+    
+      drawVisualization(name);
+    }
+    
+    // Create a fresh buffer source node and connect to filter
+    function createSource(name, buffer, loop = true) {
+      const source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+      source.loop = loop;
+      source.connect(filterNodes[name]);
+      return source;
+    }
+    
+    // Visualization
+    function drawVisualization(name) {
+      const analyser = analysers[name];
+      const ctx = canvasContexts[name];
       const bufferLength = analyser.frequencyBinCount;
       const dataArray = new Uint8Array(bufferLength);
-
+    
       function draw() {
         requestAnimationFrame(draw);
         analyser.getByteFrequencyData(dataArray);
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        const barWidth = canvas.width / bufferLength;
+        ctx.fillStyle = "#111";
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        const barWidth = ctx.canvas.width / bufferLength;
         for (let i = 0; i < bufferLength; i++) {
           const barHeight = dataArray[i] / 2;
           ctx.fillStyle = `hsl(${i * 2}, 80%, 50%)`;
-          ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth, barHeight);
+          ctx.fillRect(i * barWidth, ctx.canvas.height - barHeight, barWidth, barHeight);
         }
       }
       draw();
-
-      source.start();
+    }
+    
+    // Play/pause FX
+    function toggleFX(name) {
+      if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
+    
+      if (isPlaying[name]) {
+        fxSources[name].stop();
+        isPlaying[name] = false;
+      } else {
+        const loopFX = ["drumroll", "flute", "pizzicato"].includes(name);
+        fxSources[name] = createSource(name, fxBuffers[name], loopFX);
+        fxSources[name].start();
+        isPlaying[name] = true;
+      }
+    }
+    
+    // Play/pause Beat
+    function toggleBeat(name) {
+      if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
+    
+      if (isPlaying[name]) {
+        beatSources[name].stop();
+        isPlaying[name] = false;
+      } else {
+        beatSources[name] = createSource(name, beatBuffers[name], true);
+        beatSources[name].start();
+        isPlaying[name] = true;
+      }
+    }
+    
+    // Sliders
+    document.querySelectorAll("input[type=range]").forEach(slider => {
+      slider.addEventListener("input", e => {
+        const id = e.target.id;
+        const val = parseFloat(e.target.value);
+        const name = id.split("-")[0];
+    
+        if (id.includes("volume") && gainNodes[name]) gainNodes[name].gain.value = isMuted[name] ? 0 : val;
+        if (id.includes("filter") && filterNodes[name]) filterNodes[name].frequency.value = val;
+        if (id.includes("delay") && delayNodes[name]) {
+          delayNodes[name].delayTime.value = val;
+          feedbackNodes[name].gain.value = val;
+        }
+        if (id.includes("pan") && panNodes[name]) panNodes[name].pan.value = val;
+      });
     });
-  }
-}
-</script>
+    
+    // Mute
+    function muteTrack(name) {
+      if (!gainNodes[name]) return;
+      isMuted[name] = !isMuted[name];
+      gainNodes[name].gain.value = isMuted[name] ? 0 : parseFloat(document.getElementById(`${name}-volume`).value);
+    }
+    
+    // Solo
+    function soloTrack(name) {
+      if (soloMode === name) {
+        soloMode = null;
+        Object.keys(gainNodes).forEach(key => {
+          gainNodes[key].gain.value = parseFloat(document.getElementById(`${key}-volume`).value);
+        });
+      } else {
+        soloMode = name;
+        Object.keys(gainNodes).forEach(key => {
+          gainNodes[key].gain.value = key === name ? parseFloat(document.getElementById(`${key}-volume`).value) : 0;
+        });
+      }
+    }
+    </script>
+    
+    
+    
+    
+    
+    
