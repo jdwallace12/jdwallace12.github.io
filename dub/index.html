@@ -121,6 +121,8 @@ description: "Full-featured Dub Reggae Mixer!"
                 <select id="drumroll-select" onchange="changeFXFile('drumroll')">
                   <option value="drum">Drum Roll 1</option>
                   <option value="drum-2">Drum Roll 2</option>
+                  <option value="drum3">Drum Roll 3</option>
+                  <option value="drum4">Drum Roll 4</option>
                 </select>
               </div>
       
@@ -219,6 +221,7 @@ description: "Full-featured Dub Reggae Mixer!"
                   <option value="beat3">Beat 4</option>
                   <option value="beat4">Beat 5</option>
                   <option value="beat5">Beat 6</option>
+                  <option value="beat6">Beat 7</option>
                 </select>
               </div>
       
@@ -263,6 +266,7 @@ description: "Full-featured Dub Reggae Mixer!"
                   <option value="beat3">Beat 4</option>
                   <option value="beat4">Beat 5</option>
                   <option value="beat5">Beat 6</option>
+                  <option value="beat6">Beat 7</option>
                 </select>
               </div>
       
@@ -311,7 +315,9 @@ description: "Full-featured Dub Reggae Mixer!"
     // Swappable drum sounds
     const drumFxFiles = {
         drum: "/assets/dubfx/drum.mp3", // Original drum roll
-        'drum-2': "/assets/dubfx/drum-2.wav" // New drum roll
+        'drum-2': "/assets/dubfx/drum-2.wav", // New drum roll
+        'drum3': "/assets/dubfx/drum-3.wav", // New drum roll
+        'drum4': "/assets/dubfx/drum-4.wav" // New drum roll
     };
 
     // Beat audio files
@@ -321,7 +327,8 @@ description: "Full-featured Dub Reggae Mixer!"
       beat2: "/assets/dubfx/beat-3.mp3",
       beat3: "/assets/dubfx/beat-4.mp3",
       beat4: "/assets/dubfx/beat-5.mp3",
-      beat5: "/assets/dubfx/beat-6.wav"
+      beat5: "/assets/dubfx/beat-6.wav",
+      beat6: "/assets/dubfx/beat-7.wav"
     };
     
     // Nodes and state
