@@ -186,84 +186,97 @@ description: "Full-featured Dub Reggae Mixer!"
   
       <!-- Beat Tracks -->
       <h2 class="title is-5 has-text-success has-text-centered">Beats</h2>
+
       <div id="tracks" class="columns is-multiline">
-  
-        <!-- Beat 1 -->
-        <div class="column is-4">
+      
+        <!-- Beat Track A -->
+        <div class="column is-6">
           <div class="card">
             <header class="card-header has-background-success-light">
-              <p class="card-header-title has-text-success">Beat 1</p>
+              <p class="card-header-title has-text-success">Beat Track A</p>
             </header>
             <div class="card-content">
-              <div class="buttons mb-2">
-                <button class="button is-success is-light" onclick="toggleBeat('beat')">▶️ Play / Pause</button>
-                <button class="button is-info is-light" onclick="muteTrack('beat')">🔇 Mute</button>
-                <button class="button is-warning is-light" onclick="soloTrack('beat')">🎧 Solo</button>
+              
+              <!-- Select Beat File -->
+              <label class="label">Choose Beat</label>
+              <div class="select is-success mb-3">
+                <select id="beatA-select" onchange="changeBeatFile('beatA')">
+                  <option value="beat">Beat 1</option>
+                  <option value="beat1">Beat 2</option>
+                  <option value="beat2">Beat 3</option>
+                  <option value="beat3">Beat 4</option>
+                  <option value="beat4">Beat 5</option>
+                </select>
               </div>
+      
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleBeat('beatA')">▶️ Play / Pause</button>
+                <button class="button is-info is-light" onclick="muteTrack('beatA')">🔇 Mute</button>
+                <button class="button is-warning is-light" onclick="soloTrack('beatA')">🎧 Solo</button>
+              </div>
+      
               <label class="label">Volume</label>
-              <input class="slider is-success is-fullwidth" type="range" id="beat-volume" min="0" max="1" step="0.01" value="0.8">
+              <input class="slider is-success is-fullwidth" type="range" id="beatA-volume" min="0" max="1" step="0.01" value="0.8">
+      
               <label class="label mt-2">Pan</label>
-              <input class="slider is-info is-fullwidth" type="range" id="beat-pan" min="-1" max="1" step="0.01" value="0">
+              <input class="slider is-info is-fullwidth" type="range" id="beatA-pan" min="-1" max="1" step="0.01" value="0">
+      
               <label class="label mt-2">Echo</label>
-              <input class="slider is-warning is-fullwidth" type="range" id="beat-echo" min="0" max="1" step="0.01" value="0.2">
+              <input class="slider is-warning is-fullwidth" type="range" id="beatA-echo" min="0" max="1" step="0.01" value="0.2">
+      
               <label class="label mt-2">Filter</label>
-              <input class="slider is-danger is-fullwidth" type="range" id="beat-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="beat-canvas" width="300" height="80" class="mt-2"></canvas>
+              <input class="slider is-danger is-fullwidth" type="range" id="beatA-filter" min="200" max="8000" step="50" value="8000">
+      
+              <canvas id="beatA-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
           </div>
         </div>
-  
-        <!-- Beat 2 -->
-        <div class="column is-4">
+      
+        <!-- Beat Track B -->
+        <div class="column is-6">
           <div class="card">
             <header class="card-header has-background-success-light">
-              <p class="card-header-title has-text-success">Beat 2</p>
+              <p class="card-header-title has-text-success">Beat Track B</p>
             </header>
             <div class="card-content">
-              <div class="buttons mb-2">
-                <button class="button is-success is-light" onclick="toggleBeat('beat1')">▶️ Play / Pause</button>
-                <button class="button is-info is-light" onclick="muteTrack('beat1')">🔇 Mute</button>
-                <button class="button is-warning is-light" onclick="soloTrack('beat1')">🎧 Solo</button>
+              
+              <!-- Select Beat File -->
+              <label class="label">Choose Beat</label>
+              <div class="select is-success mb-3">
+                <select id="beatB-select" onchange="changeBeatFile('beatB')">
+                  <option value="beat">Beat 1</option>
+                  <option value="beat1">Beat 2</option>
+                  <option value="beat2">Beat 3</option>
+                  <option value="beat3">Beat 4</option>
+                  <option value="beat4">Beat 5</option>
+                </select>
               </div>
+      
+              <div class="buttons mb-2">
+                <button class="button is-success is-light" onclick="toggleBeat('beatB')">▶️ Play / Pause</button>
+                <button class="button is-info is-light" onclick="muteTrack('beatB')">🔇 Mute</button>
+                <button class="button is-warning is-light" onclick="soloTrack('beatB')">🎧 Solo</button>
+              </div>
+      
               <label class="label">Volume</label>
-              <input class="slider is-success is-fullwidth" type="range" id="beat1-volume" min="0" max="1" step="0.01" value="0.8">
+              <input class="slider is-success is-fullwidth" type="range" id="beatB-volume" min="0" max="1" step="0.01" value="0.8">
+      
               <label class="label mt-2">Pan</label>
-              <input class="slider is-info is-fullwidth" type="range" id="beat1-pan" min="-1" max="1" step="0.01" value="0">
+              <input class="slider is-info is-fullwidth" type="range" id="beatB-pan" min="-1" max="1" step="0.01" value="0">
+      
               <label class="label mt-2">Echo</label>
-              <input class="slider is-warning is-fullwidth" type="range" id="beat1-echo" min="0" max="1" step="0.01" value="0.2">
+              <input class="slider is-warning is-fullwidth" type="range" id="beatB-echo" min="0" max="1" step="0.01" value="0.2">
+      
               <label class="label mt-2">Filter</label>
-              <input class="slider is-danger is-fullwidth" type="range" id="beat1-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="beat1-canvas" width="300" height="80" class="mt-2"></canvas>
+              <input class="slider is-danger is-fullwidth" type="range" id="beatB-filter" min="200" max="8000" step="50" value="8000">
+      
+              <canvas id="beatB-canvas" width="300" height="80" class="mt-2"></canvas>
             </div>
           </div>
         </div>
-  
-        <!-- Beat 3 -->
-        <div class="column is-4">
-          <div class="card">
-            <header class="card-header has-background-success-light">
-              <p class="card-header-title has-text-success">Beat 3</p>
-            </header>
-            <div class="card-content">
-              <div class="buttons mb-2">
-                <button class="button is-success is-light" onclick="toggleBeat('beat2')">▶️ Play / Pause</button>
-                <button class="button is-info is-light" onclick="muteTrack('beat2')">🔇 Mute</button>
-                <button class="button is-warning is-light" onclick="soloTrack('beat2')">🎧 Solo</button>
-              </div>
-              <label class="label">Volume</label>
-              <input class="slider is-success is-fullwidth" type="range" id="beat2-volume" min="0" max="1" step="0.01" value="0.8">
-              <label class="label mt-2">Pan</label>
-              <input class="slider is-info is-fullwidth" type="range" id="beat2-pan" min="-1" max="1" step="0.01" value="0">
-              <label class="label mt-2">Echo</label>
-              <input class="slider is-warning is-fullwidth" type="range" id="beat2-echo" min="0" max="1" step="0.01" value="0.2">
-              <label class="label mt-2">Filter</label>
-              <input class="slider is-danger is-fullwidth" type="range" id="beat2-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="beat2-canvas" width="300" height="80" class="mt-2"></canvas>
-            </div>
-          </div>
-        </div>
-  
+      
       </div>
+      
     </div>
   </div>
   <script>
@@ -282,7 +295,9 @@ description: "Full-featured Dub Reggae Mixer!"
     const beatFiles = {
       beat: "/assets/dubfx/beat.mp3",
       beat1: "/assets/dubfx/beat-2.mp3",
-      beat2: "/assets/dubfx/beat-3.mp3"
+      beat2: "/assets/dubfx/beat-3.mp3",
+      beat3: "/assets/dubfx/beat-4.mp3",
+      beat4: "/assets/dubfx/beat-5.mp3"
     };
     
     // Nodes and state
@@ -313,6 +328,12 @@ description: "Full-featured Dub Reggae Mixer!"
     (async () => {
       for (let key in fxFiles) fxBuffers[key] = await loadAudio(fxFiles[key]);
       for (let key in beatFiles) beatBuffers[key] = await loadAudio(beatFiles[key]);
+      
+      // Initialize nodes for beat tracks on load so they are ready
+      // I'll initialize them here for a cleaner structure, even though initTrack 
+      // is designed to be lazy (called in toggleBeat).
+      initTrack('beatA', 'beatA-canvas');
+      initTrack('beatB', 'beatB-canvas');
     })();
     
     // Master gain
@@ -409,19 +430,48 @@ description: "Full-featured Dub Reggae Mixer!"
       }
     }
     
-    // Play/pause Beat
-    function toggleBeat(name) {
-      if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
-    
-      if (isPlaying[name]) {
-        beatSources[name].stop();
-        isPlaying[name] = false;
-      } else {
-        beatSources[name] = createSource(name, beatBuffers[name], true);
-        beatSources[name].start();
-        isPlaying[name] = true;
-      }
+ // Play/pause Beat (FIXED)
+function toggleBeat(name) {
+  // Ensure the track nodes are initialized
+  if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
+
+  // Get the selected beat key from the dropdown
+  const selectElement = document.getElementById(`${name}-select`);
+  const beatKey = selectElement.value; 
+  const bufferToUse = beatBuffers[beatKey];
+
+  if (!bufferToUse) {
+    console.error(`Error: Audio buffer not found for key: ${beatKey}`);
+    return;
+  }
+
+  if (isPlaying[name]) {
+    // If playing, stop the current source
+    if (beatSources[name]) {
+      beatSources[name].stop();
     }
+    isPlaying[name] = false;
+  } else {
+    // If not playing, create a NEW source and start it
+    beatSources[name] = createSource(name, bufferToUse, true); 
+    beatSources[name].start();
+    isPlaying[name] = true;
+  }
+}
+
+// changeBeatFile is called when the dropdown changes. 
+// It should stop the current beat (if playing) and start it with the new selection.
+function changeBeatFile(name) {
+    // 1. Stop the currently playing source (if it exists)
+    if (isPlaying[name] && beatSources[name]) {
+        beatSources[name].stop();
+        isPlaying[name] = false; // Set playing state to false after stopping
+    }
+    
+    // 2. Regardless of previous state, immediately start the new beat selection
+    //    We call toggleBeat, which will see isPlaying[name] is false and start the new beat.
+    toggleBeat(name);
+}
     
     // Sliders
     document.querySelectorAll("input[type=range]").forEach(slider => {
@@ -461,7 +511,7 @@ description: "Full-featured Dub Reggae Mixer!"
         });
       }
     }
-    </script>
+</script>
     
     
     
