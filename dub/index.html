@@ -10,11 +10,9 @@ description: "Full-featured Dub Reggae Mixer!"
         Mix your own riddim — sync beats, apply FX, and master your sound!
       </p>
   
-      <!-- FX Controls -->
       <h2 class="title is-5 has-text-success has-text-centered">Sound Effects</h2>
       <div class="columns is-multiline is-centered mb-5">
   
-        <!-- Airhorn -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-danger-light">
@@ -32,12 +30,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="airhorn-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="airhorn-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="airhorn-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="airhorn-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Siren -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-warning-light">
@@ -55,12 +54,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="siren-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="siren-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="siren-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="siren-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Laser -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-info-light">
@@ -78,12 +78,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="laser-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="laser-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="laser-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="laser-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Scratch -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-success-light">
@@ -101,12 +102,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="scratch-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="scratch-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="scratch-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="scratch-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Drum Roll -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-dark-light">
@@ -124,12 +126,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="drumroll-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="drumroll-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="drumroll-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="drumroll-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Flute -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-primary-light">
@@ -147,12 +150,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="flute-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="flute-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="flute-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="flute-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
-        <!-- Pizzicato -->
         <div class="column is-3">
           <div class="card">
             <header class="card-header has-background-purple-light">
@@ -170,26 +174,25 @@ description: "Full-featured Dub Reggae Mixer!"
               <input class="slider is-info is-fullwidth" type="range" id="pizzicato-delay" min="0" max="2" step="0.01" value="0.4">
               <label class="label mt-2">Filter</label>
               <input class="slider is-success is-fullwidth" type="range" id="pizzicato-filter" min="200" max="8000" step="50" value="8000">
-              <canvas id="pizzicato-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="pizzicato-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
   
       </div>
   
-      <!-- Master Controls -->
       <div class="box mb-5">
         <h2 class="title is-5">Master Controls</h2>
         <label class="label">Master Volume</label>
         <input class="slider is-success is-fullwidth" type="range" id="master-volume" min="0" max="1" step="0.01" value="0.8">
       </div>
   
-      <!-- Beat Tracks -->
       <h2 class="title is-5 has-text-success has-text-centered">Beats</h2>
 
       <div id="tracks" class="columns is-multiline">
       
-        <!-- Beat Track A -->
         <div class="column is-6">
           <div class="card">
             <header class="card-header has-background-success-light">
@@ -197,7 +200,6 @@ description: "Full-featured Dub Reggae Mixer!"
             </header>
             <div class="card-content">
               
-              <!-- Select Beat File -->
               <label class="label">Choose Beat</label>
               <div class="select is-success mb-3">
                 <select id="beatA-select" onchange="changeBeatFile('beatA')">
@@ -227,12 +229,13 @@ description: "Full-featured Dub Reggae Mixer!"
               <label class="label mt-2">Filter</label>
               <input class="slider is-danger is-fullwidth" type="range" id="beatA-filter" min="200" max="8000" step="50" value="8000">
       
-              <canvas id="beatA-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="beatA-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
       
-        <!-- Beat Track B -->
         <div class="column is-6">
           <div class="card">
             <header class="card-header has-background-success-light">
@@ -240,7 +243,6 @@ description: "Full-featured Dub Reggae Mixer!"
             </header>
             <div class="card-content">
               
-              <!-- Select Beat File -->
               <label class="label">Choose Beat</label>
               <div class="select is-success mb-3">
                 <select id="beatB-select" onchange="changeBeatFile('beatB')">
@@ -270,7 +272,9 @@ description: "Full-featured Dub Reggae Mixer!"
               <label class="label mt-2">Filter</label>
               <input class="slider is-danger is-fullwidth" type="range" id="beatB-filter" min="200" max="8000" step="50" value="8000">
       
-              <canvas id="beatB-canvas" width="300" height="80" class="mt-2"></canvas>
+              <div class="block">
+                <canvas id="beatB-canvas" width="200" height="80"></canvas>
+              </div>
             </div>
           </div>
         </div>
@@ -415,20 +419,29 @@ description: "Full-featured Dub Reggae Mixer!"
       draw();
     }
     
-    // Play/pause FX
-    function toggleFX(name) {
-      if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
-    
-      if (isPlaying[name]) {
-        fxSources[name].stop();
-        isPlaying[name] = false;
-      } else {
-        const loopFX = ["drumroll", "flute", "pizzicato"].includes(name);
-        fxSources[name] = createSource(name, fxBuffers[name], loopFX);
-        fxSources[name].start();
-        isPlaying[name] = true;
-      }
+// Play/pause FX
+function toggleFX(name) {
+  // Ensure the track nodes are initialized
+  if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
+
+  if (isPlaying[name]) {
+    // Stop the source if it is playing
+    if (fxSources[name]) {
+      fxSources[name].stop();
+      // Crucially, delete the source to clean up the reference
+      delete fxSources[name]; 
     }
+    isPlaying[name] = false;
+  } else {
+    // Determine if the FX should loop
+    const loopFX = ["drumroll", "flute", "pizzicato"].includes(name);
+    
+    // Create a NEW source every time it starts
+    fxSources[name] = createSource(name, fxBuffers[name], loopFX);
+    fxSources[name].start(0); // Start immediately
+    isPlaying[name] = true;
+  }
+}
     
  // Play/pause Beat (FIXED)
 function toggleBeat(name) {
@@ -480,6 +493,7 @@ function changeBeatFile(name) {
         const val = parseFloat(e.target.value);
         const name = id.split("-")[0];
     
+        // FX and Beat tracks share the same slider names for volume/filter/delay/pan
         if (id.includes("volume") && gainNodes[name]) gainNodes[name].gain.value = isMuted[name] ? 0 : val;
         if (id.includes("filter") && filterNodes[name]) filterNodes[name].frequency.value = val;
         if (id.includes("delay") && delayNodes[name]) {
@@ -512,9 +526,3 @@ function changeBeatFile(name) {
       }
     }
 </script>
-    
-    
-    
-    
-    
-    
