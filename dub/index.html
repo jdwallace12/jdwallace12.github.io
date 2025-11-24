@@ -115,9 +115,19 @@ description: "Full-featured Dub Reggae Mixer!"
               <p class="card-header-title has-text-dark">🥁 Drum Roll</p>
             </header>
             <div class="card-content">
+              
+              <label class="label">Choose Drum</label>
+              <div class="select is-dark mb-3">
+                <select id="drumroll-select" onchange="changeFXFile('drumroll')">
+                  <option value="drum">Drum Roll 1</option>
+                  <option value="drum-2">Drum Roll 2</option>
+                </select>
+              </div>
+      
               <div class="buttons mb-2">
                 <button class="button is-dark is-light" onclick="toggleFX('drumroll')">▶️ Play / Pause</button>
               </div>
+              
               <label class="label">Volume</label>
               <input class="slider is-dark is-fullwidth" type="range" id="drumroll-volume" min="0" max="1" step="0.01" value="0.8">
               <label class="label mt-2">Echo</label>
@@ -208,6 +218,7 @@ description: "Full-featured Dub Reggae Mixer!"
                   <option value="beat2">Beat 3</option>
                   <option value="beat3">Beat 4</option>
                   <option value="beat4">Beat 5</option>
+                  <option value="beat5">Beat 6</option>
                 </select>
               </div>
       
@@ -251,6 +262,7 @@ description: "Full-featured Dub Reggae Mixer!"
                   <option value="beat2">Beat 3</option>
                   <option value="beat3">Beat 4</option>
                   <option value="beat4">Beat 5</option>
+                  <option value="beat5">Beat 6</option>
                 </select>
               </div>
       
@@ -286,22 +298,30 @@ description: "Full-featured Dub Reggae Mixer!"
   <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     
-    // FX and Beat audio files
+    // FX audio files for fixed sounds
     const fxFiles = {
       airhorn: "/assets/dubfx/airhorn.mp3",
       siren: "/assets/dubfx/siren.mp3",
       laser: "/assets/dubfx/laser.mp3",
       scratch: "/assets/dubfx/scratch.mp3",
-      drumroll: "/assets/dubfx/drum.mp3",
       flute: "/assets/dubfx/flute.mp3",
       pizzicato: "/assets/dubfx/pizzicato.mp3"
     };
+
+    // Swappable drum sounds
+    const drumFxFiles = {
+        drum: "/assets/dubfx/drum.mp3", // Original drum roll
+        'drum-2': "/assets/dubfx/drum-2.wav" // New drum roll
+    };
+
+    // Beat audio files
     const beatFiles = {
       beat: "/assets/dubfx/beat.mp3",
       beat1: "/assets/dubfx/beat-2.mp3",
       beat2: "/assets/dubfx/beat-3.mp3",
       beat3: "/assets/dubfx/beat-4.mp3",
-      beat4: "/assets/dubfx/beat-5.mp3"
+      beat4: "/assets/dubfx/beat-5.mp3",
+      beat5: "/assets/dubfx/beat-6.wav"
     };
     
     // Nodes and state
@@ -317,7 +337,7 @@ description: "Full-featured Dub Reggae Mixer!"
     let soloMode = null;
     
     // Buffers and active sources
-    const fxBuffers = {};
+    const fxBuffers = {}; 
     const beatBuffers = {};
     let fxSources = {};
     let beatSources = {};
@@ -330,14 +350,21 @@ description: "Full-featured Dub Reggae Mixer!"
     }
     
     (async () => {
+      // Load fixed FX files
       for (let key in fxFiles) fxBuffers[key] = await loadAudio(fxFiles[key]);
+      
+      // Load swappable Drum FX files
+      for (let key in drumFxFiles) fxBuffers[key] = await loadAudio(drumFxFiles[key]);
+      
+      // Load beat files
       for (let key in beatFiles) beatBuffers[key] = await loadAudio(beatFiles[key]);
       
       // Initialize nodes for beat tracks on load so they are ready
-      // I'll initialize them here for a cleaner structure, even though initTrack 
-      // is designed to be lazy (called in toggleBeat).
       initTrack('beatA', 'beatA-canvas');
       initTrack('beatB', 'beatB-canvas');
+      
+      // Initialize node for Drum Roll FX on load
+      initTrack('drumroll', 'drumroll-canvas');
     })();
     
     // Master gain
@@ -364,10 +391,12 @@ description: "Full-featured Dub Reggae Mixer!"
       delayNode.delayTime.value = 0.4;
       feedback.gain.value = 0.3;
     
+      // Connections for Echo/Delay
       delayNode.connect(feedback);
       feedback.connect(delayNode);
       filterNode.connect(delayNode);
-      delayNode.connect(gainNode);
+      delayNode.connect(gainNode); // Output from delay and feedback loop
+      
       gainNode.connect(panNode);
       panNode.connect(analyser);
       analyser.connect(masterGain);
@@ -393,7 +422,7 @@ description: "Full-featured Dub Reggae Mixer!"
       const source = audioCtx.createBufferSource();
       source.buffer = buffer;
       source.loop = loop;
-      source.connect(filterNodes[name]);
+      source.connect(filterNodes[name]); // Connects to the filter node
       return source;
     }
     
@@ -419,29 +448,54 @@ description: "Full-featured Dub Reggae Mixer!"
       draw();
     }
     
-// Play/pause FX
-function toggleFX(name) {
-  // Ensure the track nodes are initialized
-  if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
+    // Play/pause FX
+    function toggleFX(name) {
+      // Ensure the track nodes are initialized
+      if (!gainNodes[name]) initTrack(name, `${name}-canvas`);
 
-  if (isPlaying[name]) {
-    // Stop the source if it is playing
-    if (fxSources[name]) {
-      fxSources[name].stop();
-      // Crucially, delete the source to clean up the reference
-      delete fxSources[name]; 
+      if (isPlaying[name]) {
+        // Stop and delete the source if it is playing (CLEANUP FIX)
+        if (fxSources[name]) {
+          fxSources[name].stop();
+          delete fxSources[name]; 
+        }
+        isPlaying[name] = false;
+      } else {
+        // 1. Determine the correct buffer key (uses dropdown value for drumroll)
+        let bufferKey = name;
+        if (name === 'drumroll') {
+          const selectElement = document.getElementById(`${name}-select`);
+          bufferKey = selectElement.value;
+        }
+        
+        const bufferToUse = fxBuffers[bufferKey];
+        if (!bufferToUse) {
+            console.error(`Error: Audio buffer not found for key: ${bufferKey}`);
+            return;
+        }
+
+        // 2. Determine if the FX should loop
+        const loopFX = ["drumroll", "flute", "pizzicato"].includes(name);
+        
+        // 3. Create a NEW source and start it
+        fxSources[name] = createSource(name, bufferToUse, loopFX);
+        fxSources[name].start(0); 
+        isPlaying[name] = true;
+      }
     }
-    isPlaying[name] = false;
-  } else {
-    // Determine if the FX should loop
-    const loopFX = ["drumroll", "flute", "pizzicato"].includes(name);
-    
-    // Create a NEW source every time it starts
-    fxSources[name] = createSource(name, fxBuffers[name], loopFX);
-    fxSources[name].start(0); // Start immediately
-    isPlaying[name] = true;
-  }
-}
+
+    // Handles selecting a new drum sound from the dropdown
+    function changeFXFile(name) {
+        // 1. Stop the currently playing source (if it exists)
+        if (isPlaying[name] && fxSources[name]) {
+            fxSources[name].stop();
+            delete fxSources[name];
+            isPlaying[name] = false; 
+        }
+        
+        // 2. Immediately start the new sound selection (toggleFX handles getting the new dropdown value)
+        toggleFX(name);
+    }
     
  // Play/pause Beat (FIXED)
 function toggleBeat(name) {
